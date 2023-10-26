@@ -1,0 +1,41 @@
+ <launch>
+  <!-- Arguments: arg is just a variable in a xml/launch file that has no specific relation to ROS-->
+  <arg name="model" default="kbot" doc="model type [diffbot, remo]"/>
+  <arg name="urdf_file" default="$(find xacro)/xacro '$(find mobile_robot_v2)/urdf/mobile_robot_v2.urdf'" />
+  <!--arg name="model" default="$(find mobile_robot_v2)/urdf/mobile_robot_v2.urdf"/-->
+
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="world_name" default="$(find diffbot_gazebo)/worlds/corridor.world"/>
+  <!--arg name="world_name" default="$(find kbot_gazebo)/worlds/db_world.launch"/-->
+  <arg name="x_pos" default="-2.0"/>
+  <arg name="y_pos" default="-0.5"/>
+  <arg name="z_pos" default="0.0"/>
+
+  <!-- Parameter: param in a launch file will load a single parameter to the parameter server -->
+  <param name="robot_description" command="$(find xacro)/xacro $(find mobile_robot_v2)/urdf/mobile_robot_v2.urdf" /> 
+  <param name="use_gui" value="$(arg gui)"/> 
+
+  <!-- Launch an empty world in Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+  <!-- Load the URDF into the ROS Parameter Server -->
+  <param name="kbot/robot_description" command="$(arg urdf_file)"/>
+
+ <node 
+    name="urdf_spawner" 
+    pkg="gazebo_ros" type="spawn_model" 
+    respawn="false" output="screen"
+    args="-urdf -model kbot -param /kbot/robot_description -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) "/>
+ <!--node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+    args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" /-->
+
+</launch>
