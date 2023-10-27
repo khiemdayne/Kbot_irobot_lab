@@ -8,7 +8,7 @@ kbot_bringup: Launch files to bring up the hardware drivers (camera, lidar, imu,
 
 kbot_control: Configurations for the diff_drive_controller of ROS Control used in Gazebo simulation and the real robot.
 
-kbot_description: URDF description of DiffBot including its sensors.
+mobile_robot_v2 URDF description of DiffBot including its sensors.
 
 kbot_gazebo: Simulation specific launch and configuration files for DiffBot
 
