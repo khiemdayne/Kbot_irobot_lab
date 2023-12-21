@@ -24,7 +24,9 @@ kbot_slam: Simultaneous localization and mapping using different implementations
 roslaunch kbot_gazebo kbot.launch
 
 Quet map voi salm_gmapping: 
+
 roslaunch kbot_gazebo kbot.launch
+
 roslaunch kbot_slam kbot_slam.launch
 
 Điều hướng:
