@@ -8,12 +8,24 @@ kbot_bringup: Launch files to bring up the hardware drivers (camera, lidar, imu,
 
 kbot_control: Configurations for the diff_drive_controller of ROS Control used in Gazebo simulation and the real robot.
 
-mobile_robot_v2 URDF description of DiffBot including its sensors.
+mobile_robot_v2 URDF description of KBot including its sensors.
 
-kbot_gazebo: Simulation specific launch and configuration files for DiffBot
+kbot_gazebo: Simulation specific launch and configuration files for KBot
 
-dkbot_msgs: Message definitions specific to DiffBot, for example the message for encoder data
+dkbot_msgs: Message definitions specific to KBot, for example the message for encoder data
 
 kfbot_navigation: Navigation based on move_base package; launch and configuration files.
 
 kbot_slam: Simultaneous localization and mapping using different implementations (e.g., gmapping) to create a map of the environment
+
+
+# Hướng dẫn sử dụng:
+Điều khiển robot với stering:
+roslaunch kbot_gazebo kbot.launch
+
+Quet map voi salm_gmapping: 
+roslaunch kbot_gazebo kbot.launch
+roslaunch kbot_slam kbot_slam.launch
+
+Điều hướng:
+roslaunch kbot_navigation kbot.launch
